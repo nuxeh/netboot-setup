@@ -2,6 +2,8 @@
 
 . ./config
 
+sudo systemctl stop dnsmasq.service
+
 echo "Assigning IP ($IP_INT) to $IF_INT (internal interface)"
 sudo ip addr add "$IP_INT" dev "$IF_INT"
 
@@ -14,6 +16,8 @@ sudo iptables -t nat -A POSTROUTING -o $IF_EXT -j MASQUERADE
 echo "Enabling IP forwarding"
 sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
 sed -i 's/^#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/' /etc/sysctl.conf
+
+sudo systemctl start dnsmasq.service
 
 echo "Done."
 
