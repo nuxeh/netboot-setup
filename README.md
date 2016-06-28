@@ -8,4 +8,3 @@ development on ARM development boards. It:
 - Provides NFS for serving of a root filesystem
 - Provides NAT so the devboard can access the internet through the same
   ethernet port used to provide DHCP and TFTP
-- Isn't yet documented
